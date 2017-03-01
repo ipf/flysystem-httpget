@@ -76,11 +76,19 @@ class HttpGetAdapter implements AdapterInterface
         throw new NotSupportedException(self::UNSUPPORTED_MESSAGE);
     }
 
+    /**
+     * @param string $path
+     * @return bool
+     */
     public function has($path)
     {
         return $this->client->head($path)->getStatusCode() === 200;
     }
 
+    /**
+     * @param string $path
+     * @return array
+     */
     public function read($path)
     {
         $returner = [];
@@ -90,6 +98,10 @@ class HttpGetAdapter implements AdapterInterface
         return $returner;
     }
 
+    /**
+     * @param string $path
+     * @return \Psr\Http\Message\StreamInterface
+     */
     public function readStream($path)
     {
         return $this->client->get($path)->getBody();
@@ -100,26 +112,46 @@ class HttpGetAdapter implements AdapterInterface
         throw new NotSupportedException(self::UNSUPPORTED_MESSAGE);
     }
 
+    /**
+     * @param string $path
+     * @return array|mixed|null
+     */
     public function getMetadata($path)
     {
         return $this->client->get($path)->getBody()->getMetadata();
     }
 
+    /**
+     * @param string $path
+     * @return \string[]
+     */
     public function getSize($path)
     {
-        return $this->client->get($path)->getHeader('content-length');
+        return [$this->client->get($path)->getHeader('content-length')];
     }
 
+    /**
+     * @param string $path
+     * @return \string[]
+     */
     public function getMimetype($path)
     {
-        return $this->client->get($path)->getHeader('content-type');
+        return [$this->client->get($path)->getHeader('content-type')];
     }
 
+    /**
+     * @param string $path
+     * @return \string[]
+     */
     public function getTimestamp($path)
     {
-        return $this->client->get($path)->getHeader('date');
+        return [$this->client->get($path)->getHeader('date')];
     }
 
+    /**
+     * @param string $path
+     * @return string
+     */
     public function getVisibility($path)
     {
         return 'public';
