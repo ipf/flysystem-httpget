@@ -1,0 +1,21 @@
+{
+    "name": "ipf/flysystem-httpget",
+    "description": "HTTP GET Adapter for flysystem",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2",
+        "league/flysystem": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ipf\\Flysystem\\Httpget\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ingo Pfennigstorf",
+            "email": "i.pfennigstorf@gmail.com"
+        }
+    ]
+}
