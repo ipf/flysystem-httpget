@@ -17,10 +17,11 @@ class HttpGetAdapter implements AdapterInterface
     /**
      * HttpGetAdapter constructor.
      *
-     * @param Client $client
+     * @param array $configuration
      */
-    public function __construct(Client $client)
+    public function __construct(array $configuration)
     {
+        $client = new Client($configuration);
         $this->client = $client;
     }
 
